@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaskForge — Django & PostgreSQL Workspace</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-base: #070a12;
+            --bg-surface: rgba(15, 23, 42, 0.78);
+            --bg-card: rgba(30, 41, 59, 0.55);
+            --bg-card-hover: rgba(51, 65, 85, 0.7);
+            --border-subtle: rgba(255, 255, 255, 0.08);
+            --border-glow: rgba(99, 102, 241, 0.5);
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --accent-indigo: #6366f1;
+            --accent-violet: #8b5cf6;
+            --accent-cyan: #06b6d4;
+            --todo-color: #38bdf8;
+            --progress-color: #f59e0b;
+            --done-color: #10b981;
+            --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-base);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            overflow-x: hidden;
+            background-image:
+                radial-gradient(circle at 12% 18%, rgba(99, 102, 241, 0.15) 0%, transparent 38%),
+                radial-gradient(circle at 88% 82%, rgba(6, 182, 212, 0.12) 0%, transparent 40%);
+        }
+
+        /* Animations */
+        @keyframes cardEntrance {
+            from { opacity: 0; transform: translateY(20px) scale(0.97); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.4); opacity: 0.5; }
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 280px;
+            background: var(--bg-surface);
+            backdrop-filter: blur(20px);
+            border-right: 1px solid var(--border-subtle);
+            padding: 28px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 26px;
+            height: 100vh;
+            position: sticky;
+            top: 0;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 0 6px;
+        }
+
+        .brand-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--accent-indigo), var(--accent-cyan));
+            display: grid;
+            place-items: center;
+            font-weight: 800;
+            font-size: 1.15rem;
+            box-shadow: 0 8px 22px -4px rgba(99, 102, 241, 0.6);
+        }
+
+        .brand-title { font-size: 1.2rem; font-weight: 700; letter-spacing: -0.02em; }
+        .brand-sub { font-size: 0.7rem; color: var(--accent-cyan); font-family: 'JetBrains Mono', monospace; }
+
+        .sidebar-label {
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--text-muted);
+            font-weight: 700;
+            margin-bottom: 10px;
+            padding: 0 10px;
+        }
+
+        .project-nav {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .project-btn {
+            padding: 10px 12px;
+            border-radius: 10px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--text-secondary);
+            font-size: 0.88rem;
+            font-weight: 500;
+            border: 1px solid transparent;
+            transition: all 0.25s var(--ease-out-expo);
+        }
+
+        .project-btn:hover {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-primary);
+            transform: translateX(4px);
+        }
+
+        .project-btn.active {
+            background: rgba(99, 102, 241, 0.16);
+            color: var(--text-primary);
+            border-color: rgba(99, 102, 241, 0.4);
+        }
+
+        .count-pill {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.72rem;
+            background: rgba(255, 255, 255, 0.08);
+            padding: 2px 8px;
+            border-radius: 99px;
+        }
+
+        .telemetry-box {
+            margin-top: auto;
+            background: rgba(9, 13, 22, 0.9);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            padding: 14px;
+        }
+
+        .telemetry-head {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .live-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--done-color);
+            border-radius: 50%;
+            animation: pulseGlow 2s infinite;
+        }
+
+        .telemetry-body {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+            line-height: 1.55;
+        }
+
+        /* Main Area */
+        .workspace {
+            flex: 1;
+            padding: 30px 38px;
+            display: flex;
+            flex-direction: column;
+            gap: 26px;
+            max-width: 1460px;
+        }
+
+        .header-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .header-title h2 { font-size: 1.65rem; font-weight: 700; letter-spacing: -0.02em; }
+        .header-title p { color: var(--text-secondary); font-size: 0.88rem; margin-top: 4px; }
+
+        .action-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .search-input {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            color: var(--text-primary);
+            padding: 10px 16px;
+            border-radius: 10px;
+            font-size: 0.86rem;
+            width: 220px;
+            outline: none;
+            transition: all 0.25s var(--ease-out-expo);
+        }
+
+        .search-input:focus {
+            width: 260px;
+            border-color: var(--accent-indigo);
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+        }
+
+        .btn {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            color: var(--text-primary);
+            padding: 10px 15px;
+            border-radius: 10px;
+            font-size: 0.84rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            transition: all 0.22s var(--ease-out-expo);
+        }
+
+        .btn:hover {
+            background: var(--bg-card-hover);
+            transform: translateY(-2px);
+            border-color: rgba(255, 255, 255, 0.22);
+        }
+
+        .btn-accent {
+            background: linear-gradient(135deg, var(--accent-indigo), var(--accent-violet));
+            border: none;
+            box-shadow: 0 8px 20px -6px rgba(99, 102, 241, 0.65);
+        }
+
+        .btn-seed {
+            border-color: rgba(6, 182, 212, 0.4);
+            color: #67e8f9;
+        }
+
+        /* KPI Grid */
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+        }
+
+        .kpi-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            padding: 18px 20px;
+            transition: all 0.3s var(--ease-out-expo);
+            animation: cardEntrance 0.5s var(--ease-out-expo) backwards;
+        }
+
+        .kpi-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--border-glow);
+        }
+
+        .kpi-top {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .kpi-num {
+            font-size: 1.95rem;
+            font-weight: 700;
+            font-family: 'JetBrains Mono', monospace;
+            margin-top: 8px;
+        }
+
+        .kpi-foot { font-size: 0.73rem; color: var(--text-muted); margin-top: 4px; }
+
+        /* Filter Pills */
+        .toolbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-subtle);
+            padding-bottom: 14px;
+        }
+
+        .pill-group { display: flex; gap: 8px; }
+
+        .pill {
+            background: transparent;
+            border: 1px solid var(--border-subtle);
+            color: var(--text-secondary);
+            padding: 7px 14px;
+            border-radius: 99px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .pill.active, .pill:hover {
+            background: var(--text-primary);
+            color: var(--bg-base);
+            border-color: var(--text-primary);
+        }
+
+        /* Kanban Columns */
+        .board-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            align-items: start;
+        }
+
+        .board-col {
+            background: rgba(15, 23, 42, 0.52);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            padding: 16px;
+            min-height: 440px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .col-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 4px 6px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .col-title { display: flex; align-items: center; gap: 8px; }
+        .dot { width: 9px; height: 9px; border-radius: 50%; }
+
+        .task-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 14px;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            transition: all 0.28s var(--ease-out-expo);
+            animation: cardEntrance 0.4s var(--ease-out-expo) backwards;
+        }
+
+        .task-card:hover {
+            transform: translateY(-4px);
+            background: var(--bg-card-hover);
+            border-color: var(--border-glow);
+            box-shadow: 0 14px 28px -10px rgba(0, 0, 0, 0.65);
+        }
+
+        .task-tags {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .tag-proj {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--accent-cyan);
+            background: rgba(6, 182, 212, 0.12);
+            padding: 3px 8px;
+            border-radius: 6px;
+        }
+
+        .tag-prio {
+            font-size: 0.68rem;
+            font-weight: 700;
+            padding: 3px 8px;
+            border-radius: 6px;
+        }
+
+        .prio-HIGH { color: #fca5a5; background: rgba(239, 68, 68, 0.16); border: 1px solid rgba(239, 68, 68, 0.3); }
+        .prio-MEDIUM { color: #fde68a; background: rgba(245, 158, 11, 0.16); border: 1px solid rgba(245, 158, 11, 0.3); }
+        .prio-LOW { color: #6ee7b7; background: rgba(16, 185, 129, 0.16); border: 1px solid rgba(16, 185, 129, 0.3); }
+
+        .task-name { font-size: 0.94rem; font-weight: 600; line-height: 1.42; }
+
+        .task-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 10px;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+
+        .avatars { display: flex; align-items: center; }
+        .avatar {
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #6366f1, #ec4899);
+            border: 2px solid #0f172a;
+            display: grid;
+            place-items: center;
+            font-size: 0.65rem;
+            font-weight: 700;
+            color: #fff;
+            margin-left: -7px;
+        }
+        .avatar:first-child { margin-left: 0; }
+
+        .status-cycle-btn {
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid var(--border-subtle);
+            color: var(--text-primary);
+            padding: 4px 9px;
+            border-radius: 6px;
+            font-size: 0.7rem;
+            font-family: 'JetBrains Mono', monospace;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .status-cycle-btn:hover {
+            background: var(--accent-indigo);
+            border-color: var(--accent-indigo);
+        }
+
+        /* Modals */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.25s ease;
+            z-index: 100;
+        }
+        .modal-overlay.open { opacity: 1; pointer-events: auto; }
+
+        .modal-box {
+            background: #0f172a;
+            border: 1px solid var(--border-glow);
+            border-radius: 16px;
+            width: 92%;
+            max-width: 580px;
+            padding: 24px;
+            transform: translateY(16px);
+            transition: transform 0.25s var(--ease-out-expo);
+        }
+        .modal-overlay.open .modal-box { transform: translateY(0); }
+
+        .form-row { display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; }
+        .form-row label { font-size: 0.8rem; color: var(--text-secondary); font-weight: 600; }
+        .form-row input, .form-row select {
+            background: #070a12;
+            border: 1px solid var(--border-subtle);
+            color: var(--text-primary);
+            padding: 10px 12px;
+            border-radius: 8px;
+            font-size: 0.88rem;
+            outline: none;
+        }
+
+        pre {
+            background: #070a12;
+            padding: 14px;
+            border-radius: 10px;
+            border: 1px solid var(--border-subtle);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.78rem;
+            color: #a5b4fc;
+            max-height: 340px;
+            overflow: auto;
+        }
+
+        @media (max-width: 1080px) {
+            .board-grid { grid-template-columns: 1fr; }
+            .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+            .sidebar { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <div class="brand">
+            <div class="brand-icon">TF</div>
+            <div>
+                <div class="brand-title">TaskForge</div>
+                <div class="brand-sub">POSTGRES + DJANGO ORM</div>
+            </div>
+        </div>
+
+        <div>
+            <div class="sidebar-label">Workspaces (Projects)</div>
+            <ul class="project-nav" id="projectList"></ul>
+        </div>
+
+        <div class="telemetry-box">
+            <div class="telemetry-head">
+                <span class="live-dot"></span>
+                <span>QuerySet Telemetry</span>
+            </div>
+            <div class="telemetry-body">
+                • select_related('project', 'assigned_to')<br>
+                • prefetch_related('collaborators')<br>
+                • Source: <span id="dbStateLabel" style="color:#10b981;">PostgreSQL Live</span>
+            </div>
+        </div>
+    </aside>
+
+    <!-- MAIN WORKSPACE -->
+    <main class="workspace">
+        <header class="header-bar">
+            <div class="header-title">
+                <h2 id="boardHeading">All Capstone Tasks</h2>
+                <p>Click any task's status button to update it live in PostgreSQL</p>
+            </div>
+            <div class="action-group">
+                <input type="text" id="searchBox" class="search-input" placeholder="🔍 Search title or user...">
+                <button class="btn btn-seed" id="seedBtn">⚡ Seed PostgreSQL Data</button>
+                <button class="btn" id="openJsonBtn">{ } Inspect JSON</button>
+                <button class="btn btn-accent" id="openCreateBtn">+ New Task</button>
+                <a href="/admin/" class="btn">⚙️ Admin</a>
+            </div>
+        </header>
+
+        <!-- KPI STATS -->
+        <section class="kpi-grid">
+            <div class="kpi-card">
+                <div class="kpi-top"><span>Total Tasks</span><span>📋</span></div>
+                <div class="kpi-num" id="kpiTotal">0</div>
+                <div class="kpi-foot">Optimized 1-batch fetch</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-top"><span>In Progress</span><span>⚡</span></div>
+                <div class="kpi-num" id="kpiProgress" style="color: var(--progress-color);">0</div>
+                <div class="kpi-foot">Active sprint items</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-top"><span>Completed</span><span>✅</span></div>
+                <div class="kpi-num" id="kpiDone" style="color: var(--done-color);">0</div>
+                <div class="kpi-foot">Committed to DB</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-top"><span>Projects</span><span>🗂️</span></div>
+                <div class="kpi-num" id="kpiProjects" style="color: var(--accent-cyan);">0</div>
+                <div class="kpi-foot">ForeignKey & M2M linked</div>
+            </div>
+        </section>
+
+        <!-- FILTER TOOLBAR -->
+        <div class="toolbar">
+            <div class="pill-group" id="priorityPills">
+                <button class="pill active" data-prio="ALL">All Priorities</button>
+                <button class="pill" data-prio="HIGH">🔥 High</button>
+                <button class="pill" data-prio="MEDIUM">⚡ Medium</button>
+                <button class="pill" data-prio="LOW">🌱 Low</button>
+            </div>
+        </div>
+
+        <!-- KANBAN BOARD -->
+        <section class="board-grid">
+            <div class="board-col">
+                <div class="col-head">
+                    <div class="col-title"><span class="dot" style="background:var(--todo-color);"></span>To Do</div>
+                    <span class="count-pill" id="cntTodo">0</span>
+                </div>
+                <div id="listTodo" style="display:flex;flex-direction:column;gap:12px;"></div>
+            </div>
+
+            <div class="board-col">
+                <div class="col-head">
+                    <div class="col-title"><span class="dot" style="background:var(--progress-color);"></span>In Progress</div>
+                    <span class="count-pill" id="cntProgress">0</span>
+                </div>
+                <div id="listProgress" style="display:flex;flex-direction:column;gap:12px;"></div>
+            </div>
+
+            <div class="board-col">
+                <div class="col-head">
+                    <div class="col-title"><span class="dot" style="background:var(--done-color);"></span>Done</div>
+                    <span class="count-pill" id="cntDone">0</span>
+                </div>
+                <div id="listDone" style="display:flex;flex-direction:column;gap:12px;"></div>
+            </div>
+        </section>
+    </main>
+
+    <!-- CREATE TASK MODAL -->
+    <div class="modal-overlay" id="createModal">
+        <div class="modal-box">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+                <h3>Create New Task in PostgreSQL</h3>
+                <button class="btn" id="closeCreateBtn">✕</button>
+            </div>
+            <form id="createTaskForm">
+                <div class="form-row">
+                    <label>Task Title</label>
+                    <input type="text" id="taskTitleInput" required placeholder="e.g., Implement SimpleJWT token refresh">
+                </div>
+                <div class="form-row">
+                    <label>Assignee Username</label>
+                    <input type="text" id="taskAssigneeInput" value="faizan" required>
+                </div>
+                <div class="form-row">
+                    <label>Priority</label>
+                    <select id="taskPriorityInput">
+                        <option value="HIGH">HIGH</option>
+                        <option value="MEDIUM" selected>MEDIUM</option>
+                        <option value="LOW">LOW</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-accent" style="width:100%;justify-content:center;margin-top:8px;">
+                    Save Task to Database
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- JSON INSPECTOR MODAL -->
+    <div class="modal-overlay" id="jsonModal">
+        <div class="modal-box">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;">
+                <h3>Live `/api/tasks/` JSON Payload</h3>
+                <button class="btn" id="closeJsonBtn">✕</button>
+            </div>
+            <pre id="jsonOutput"></pre>
+        </div>
+    </div>
+
+    <script>
+        let appState = {
+            projects: [],
+            tasks: [],
+            projectFilter: 'ALL',
+            priorityFilter: 'ALL',
+            search: ''
+        };
+
+        const NEXT_STATUS = {
+            'TODO': 'IN_PROGRESS',
+            'IN_PROGRESS': 'DONE',
+            'DONE': 'TODO'
+        };
+
+        async function fetchAllData() {
+            try {
+                const [pRes, tRes] = await Promise.all([
+                    fetch('/api/projects/'),
+                    fetch('/api/tasks/')
+                ]);
+                const pJson = await pRes.json();
+                const tJson = await tRes.json();
+
+                appState.projects = pJson.results || [];
+                appState.tasks = tJson.results || [];
+
+                // If database is completely empty on first launch, auto-seed it once!
+                if (appState.tasks.length === 0) {
+                    await fetch('/api/seed/', { method: 'POST' });
+                    return fetchAllData();
+                }
+            } catch (e) {
+                console.error("API error:", e);
+            }
+            renderSidebar();
+            renderKanban();
+        }
+
+        function renderSidebar() {
+            const nav = document.getElementById('projectList');
+            let html = `
+                <li class="project-btn ${appState.projectFilter === 'ALL' ? 'active' : ''}" data-id="ALL">
+                    <span>🌐 All Projects</span>
+                    <span class="count-pill">${appState.tasks.length}</span>
+                </li>
+            `;
+            appState.projects.forEach(p => {
+                html += `
+                    <li class="project-btn ${appState.projectFilter == p.id ? 'active' : ''}" data-id="${p.id}">
+                        <span>📁 ${p.name}</span>
+                        <span class="count-pill">${p.tasks_count}</span>
+                    </li>
+                `;
+            });
+            nav.innerHTML = html;
+
+            nav.querySelectorAll('.project-btn').forEach(li => {
+                li.addEventListener('click', () => {
+                    appState.projectFilter = li.dataset.id;
+                    document.getElementById('boardHeading').textContent = li.querySelector('span').textContent;
+                    renderSidebar();
+                    renderKanban();
+                });
+            });
+        }
+
+        function buildCard(task, idx) {
+            const delay = (idx * 0.05).toFixed(2);
+            const people = [task.assigned_to, ...(task.collaborators || [])].filter(Boolean);
+            const avatars = people.map(u => `<div class="avatar" title="${u}">${u.slice(0,2).toUpperCase()}</div>`).join('');
+
+            return `
+                <article class="task-card" style="animation-delay:${delay}s">
+                    <div class="task-tags">
+                        <span class="tag-proj">${task.project.name}</span>
+                        <span class="tag-prio prio-${task.priority}">${task.priority}</span>
+                    </div>
+                    <div class="task-name">${task.title}</div>
+                    <div class="task-footer">
+                        <div class="avatars">${avatars}</div>
+                        <button class="status-cycle-btn" onclick="cycleTaskStatus(${task.id}, '${task.status}')">
+                            ${task.status} ↻
+                        </button>
+                    </div>
+                </article>
+            `;
+        }
+
+        function renderKanban() {
+            const filtered = appState.tasks.filter(t => {
+                const matchProj = appState.projectFilter === 'ALL' || t.project.id == appState.projectFilter;
+                const matchPrio = appState.priorityFilter === 'ALL' || t.priority === appState.priorityFilter;
+                const matchSearch = t.title.toLowerCase().includes(appState.search.toLowerCase()) ||
+                                    (t.assigned_to || '').toLowerCase().includes(appState.search.toLowerCase());
+                return matchProj && matchPrio && matchSearch;
+            });
+
+            const todo = filtered.filter(t => t.status === 'TODO');
+            const prog = filtered.filter(t => t.status === 'IN_PROGRESS');
+            const done = filtered.filter(t => t.status === 'DONE');
+
+            document.getElementById('listTodo').innerHTML = todo.map(buildCard).join('');
+            document.getElementById('listProgress').innerHTML = prog.map(buildCard).join('');
+            document.getElementById('listDone').innerHTML = done.map(buildCard).join('');
+
+            document.getElementById('cntTodo').textContent = todo.length;
+            document.getElementById('cntProgress').textContent = prog.length;
+            document.getElementById('cntDone').textContent = done.length;
+
+            document.getElementById('kpiTotal').textContent = filtered.length;
+            document.getElementById('kpiProgress').textContent = prog.length;
+            document.getElementById('kpiDone').textContent = done.length;
+            document.getElementById('kpiProjects').textContent = appState.projects.length;
+        }
+
+        async function cycleTaskStatus(taskId, currentStatus) {
+            const nextStatus = NEXT_STATUS[currentStatus] || 'TODO';
+            await fetch(`/api/tasks/${taskId}/status/`, {
+                method: 'PATCH',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ status: nextStatus })
+            });
+            await fetchAllData();
+        }
+
+        // Event Listeners
+        document.getElementById('searchBox').addEventListener('input', e => {
+            appState.search = e.target.value;
+            renderKanban();
+        });
+
+        document.querySelectorAll('#priorityPills .pill').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('#priorityPills .pill').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                appState.priorityFilter = btn.dataset.prio;
+                renderKanban();
+            });
+        });
+
+        document.getElementById('seedBtn').addEventListener('click', async () => {
+            await fetch('/api/seed/', { method: 'POST' });
+            await fetchAllData();
+        });
+
+        // Create Modal
+        const createModal = document.getElementById('createModal');
+        document.getElementById('openCreateBtn').onclick = () => createModal.classList.add('open');
+        document.getElementById('closeCreateBtn').onclick = () => createModal.classList.remove('open');
+
+        document.getElementById('createTaskForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            await fetch('/api/tasks/', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    title: document.getElementById('taskTitleInput').value,
+                    assigned_to: document.getElementById('taskAssigneeInput').value,
+                    priority: document.getElementById('taskPriorityInput').value,
+                    project_id: appState.projectFilter === 'ALL' ? null : appState.projectFilter
+                })
+            });
+            document.getElementById('taskTitleInput').value = '';
+            createModal.classList.remove('open');
+            await fetchAllData();
+        });
+
+        // JSON Inspector Modal
+        const jsonModal = document.getElementById('jsonModal');
+        document.getElementById('openJsonBtn').onclick = () => {
+            document.getElementById('jsonOutput').textContent = JSON.stringify(
+                { count: appState.tasks.length, orm_optimization: "select_related + prefetch_related", results: appState.tasks },
+                null, 2
+            );
+            jsonModal.classList.add('open');
+        };
+        document.getElementById('closeJsonBtn').onclick = () => jsonModal.classList.remove('open');
+
+        fetchAllData();
+    </script>
+</body>
+</html>
