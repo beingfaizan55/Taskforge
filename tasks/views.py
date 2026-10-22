@@ -1,30 +1,15 @@
-from django.shortcuts import render
-from rest_framework.views import APIView
-from rest_framework.response import Response
 from rest_framework import viewsets
+from rest_framework_api_key.permissions import HasAPIKey
 from .models import Project, Task
 from .serializers import ProjectSerializer, TaskSerializer
+from .permissions import IsAdminRole, IsManagerRole, IsOwnerOrCollaborator
 
-# 1. The Frontend Dashboard View (This fixes your error!)
-def dashboard_view(request):
-    return render(request, 'tasks/dashboard.html')
-
-# 2. The Custom APIView
-class CapstoneHealthAPIView(APIView):
-    """A basic APIView for a custom endpoint that doesn't fit standard CRUD."""
-    def get(self, request):
-        return Response({
-            "status": "healthy",
-            "message": "DRF APIView is fully operational!"
-        })
-
-# 3. The Automated ViewSets
 class ProjectViewSet(viewsets.ModelViewSet):
-    """Automatically handles GET, POST, PUT, PATCH, and DELETE for Projects."""
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
+    permission_classes = [HasAPIKey & (IsAdminRole | IsManagerRole | IsOwnerOrCollaborator)]
 
 class TaskViewSet(viewsets.ModelViewSet):
-    """Automatically handles GET, POST, PUT, PATCH, and DELETE for Tasks."""
-    queryset = Task.objects.select_related('project', 'assigned_to').prefetch_related('collaborators').all()
+    queryset = Task.objects.all()
     serializer_class = TaskSerializer
+    permission_classes = [HasAPIKey & (IsAdminRole | IsManagerRole | IsOwnerOrCollaborator)]

@@ -1,12 +1,19 @@
 from django.contrib import admin
-from .models import Project, Task
+from django.contrib.auth.admin import UserAdmin
+from .models import CustomUser, Project, Task
 
+# CustomUser mein role field dikhane ke liye CustomAdmin
+class CustomUserAdmin(UserAdmin):
+    fieldsets = UserAdmin.fieldsets + (
+        ('Role Information', {'fields': ('role',)}),
+    )
+
+admin.site.register(CustomUser, CustomUserAdmin)
 
 class TaskInline(admin.TabularInline):
     model = Task
     extra = 1
     fields = ('title', 'assigned_to', 'status', 'priority', 'due_date')
-
 
 @admin.register(Project)
 class ProjectAdmin(admin.ModelAdmin):
@@ -16,7 +23,6 @@ class ProjectAdmin(admin.ModelAdmin):
     filter_horizontal = ('members',)
     inlines = [TaskInline]
 
-    # Tuesday Deliverable: Optimize Admin queries
     def get_queryset(self, request):
         qs = super().get_queryset(request)
         return qs.select_related('owner').prefetch_related('members', 'tasks')
@@ -29,7 +35,6 @@ class ProjectAdmin(admin.ModelAdmin):
         return obj.tasks.count()
     task_count.short_description = 'Tasks'
 
-
 @admin.register(Task)
 class TaskAdmin(admin.ModelAdmin):
     list_display = ('id', 'title', 'project', 'assigned_to', 'status', 'priority', 'due_date')
@@ -38,7 +43,6 @@ class TaskAdmin(admin.ModelAdmin):
     list_editable = ('status', 'priority')
     filter_horizontal = ('collaborators',)
 
-    # Tuesday Deliverable: Optimize ForeignKey & ManyToMany lookups
     def get_queryset(self, request):
         qs = super().get_queryset(request)
         return qs.select_related('project', 'assigned_to').prefetch_related('collaborators')

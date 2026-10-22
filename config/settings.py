@@ -14,6 +14,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',  # Added DRF
+    'rest_framework_simplejwt',
+    'rest_framework_api_key',
     'tasks',
 ]
 
@@ -51,7 +53,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'taskforge_db',       # Must match the database name you created
+        'NAME': 'taskforge',       # Must match the database name you created
         'USER': 'postgres',           # Your PostgreSQL username (usually 'postgres')
         'PASSWORD': 'Fai123$0',  # Your actual PostgreSQL password set during installation
         'HOST': 'localhost',
@@ -73,3 +75,21 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+from datetime import timedelta
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+}
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(hours=2),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
+    'AUTH_HEADER_TYPES': ('Bearer',),
+}
+AUTH_USER_MODEL = 'tasks.CustomUser'

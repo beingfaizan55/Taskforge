@@ -16,10 +16,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from tasks.views import dashboard_view
 
 urlpatterns = [
-    path('', dashboard_view, name='dashboard'),
     path('admin/', admin.site.urls),
-    path('api/', include('tasks.urls')),
+    # Ye line tasks app ki urls ko yahan link kar rahi hai
+    path('api/', include('tasks.urls')), 
 ]
