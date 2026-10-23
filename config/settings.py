@@ -16,6 +16,8 @@ INSTALLED_APPS = [
     'rest_framework',  # Added DRF
     'rest_framework_simplejwt',
     'rest_framework_api_key',
+    'django_filters',
+    'drf_spectacular',
     'tasks',
 ]
 
@@ -85,6 +87,8 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticated',
     ),
+    # Move the schema class here, outside the tuples
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
 }
 
 SIMPLE_JWT = {
