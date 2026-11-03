@@ -1,6 +1,10 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from .models import CustomUser, Project, Task
+from .models import CustomUser, Workspace, Project, Task, TaskComment
+
+# Jin models ki custom admin classes nahi hain, unhein yahan register karein
+admin.site.register(Workspace)
+admin.site.register(TaskComment)
 
 # CustomUser mein role field dikhane ke liye CustomAdmin
 class CustomUserAdmin(UserAdmin):
@@ -10,39 +14,29 @@ class CustomUserAdmin(UserAdmin):
 
 admin.site.register(CustomUser, CustomUserAdmin)
 
-class TaskInline(admin.TabularInline):
-    model = Task
-    extra = 1
-    fields = ('title', 'assigned_to', 'status', 'priority', 'due_date')
 
 @admin.register(Project)
-class ProjectAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name', 'owner', 'member_count', 'task_count', 'created_at')
-    list_filter = ('created_at', 'owner')
-    search_fields = ('name', 'description', 'owner__username')
-    filter_horizontal = ('members',)
-    inlines = [TaskInline]
+class ProjectAdmin(ModelAdmin := admin.ModelAdmin):
+    list_display = ('id', 'title', 'owner_id', 'get_member_count', 'get_task_count', 'created_at')
+    list_filter = ('created_at', 'owner_id')
+    search_fields = ('title',) 
 
-    def get_queryset(self, request):
-        qs = super().get_queryset(request)
-        return qs.select_related('owner').prefetch_related('members', 'tasks')
+    def get_member_count(self, obj):
+        # member_ids ab ek JSON list hai (jaise [1, 2, 3]), isliye len() use karenge
+        if isinstance(obj.member_ids, list):
+            return len(obj.member_ids)
+        return 0
+    get_member_count.short_description = 'Members'
 
-    def member_count(self, obj):
-        return obj.members.count()
-    member_count.short_description = 'Members'
+    def get_task_count(self, obj):
+        # Related name ('tasks') kaam nahi karega, isliye manual database query karenge
+        return Task.objects.filter(project_id=obj.id).count()
+    get_task_count.short_description = 'Tasks'
 
-    def task_count(self, obj):
-        return obj.tasks.count()
-    task_count.short_description = 'Tasks'
 
 @admin.register(Task)
 class TaskAdmin(admin.ModelAdmin):
-    list_display = ('id', 'title', 'project', 'assigned_to', 'status', 'priority', 'due_date')
-    list_filter = ('status', 'priority', 'project', 'due_date')
-    search_fields = ('title', 'description', 'project__name', 'assigned_to__username')
+    list_display = ('id', 'title', 'project_id', 'assigned_to_id', 'status', 'priority', 'due_date')
+    list_filter = ('status', 'priority', 'project_id', 'due_date')
+    search_fields = ('title', 'description')
     list_editable = ('status', 'priority')
-    filter_horizontal = ('collaborators',)
-
-    def get_queryset(self, request):
-        qs = super().get_queryset(request)
-        return qs.select_related('project', 'assigned_to').prefetch_related('collaborators')

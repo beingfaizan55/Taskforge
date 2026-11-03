@@ -1,0 +1,1 @@
+default_app_config = 'tasks.apps.TasksConfig'  # Apni app name ke mutabiq adjust karein

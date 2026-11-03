@@ -1,11 +1,25 @@
+import os
 from pathlib import Path
+import environ
 
+# 1. Project Directory
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = 'django-insecure-taskforge-capstone-secret-key'
-DEBUG = True
+# 2. Initialize Environ
+env = environ.Env(DEBUG=(bool, False))
+environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
+
+# 3. Secure Core Settings (Fetching from .env)
+SECRET_KEY = env('SECRET_KEY')
+DEBUG = env('DEBUG')
 ALLOWED_HOSTS = ['*']
 
+# 4. OpenAPI Docs Settings
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'TaskForge API',
+    'DESCRIPTION': 'Backend API for the TaskForge project management system.',
+    'VERSION': '1.0.0',
+}
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -13,12 +27,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rest_framework',  # Added DRF
+    'rest_framework',   # Added DRF
     'rest_framework_simplejwt',
     'rest_framework_api_key',
     'django_filters',
     'drf_spectacular',
-    'tasks',
+    'tasks.apps.TasksConfig',
 ]
 
 MIDDLEWARE = [
@@ -55,11 +69,14 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'taskforge',       # Must match the database name you created
+        'NAME': 'taskforge_db',       # Must match the database name you created
         'USER': 'postgres',           # Your PostgreSQL username (usually 'postgres')
         'PASSWORD': 'Fai123$0',  # Your actual PostgreSQL password set during installation
         'HOST': 'localhost',
         'PORT': '5432',
+        'TEST': {
+            'NAME': 'taskforge_fresh_test_db',  # Is naye naam se purana corrupt DB ignore ho jayega
+        },
     }
 }
 
@@ -87,8 +104,14 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticated',
     ),
+    'DEFAULT_FILTER_BACKENDS': [
+        'django_filters.rest_framework.DjangoFilterBackend',
+    ],
     # Move the schema class here, outside the tuples
     'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+    # Yeh do lines pagination ko activate karti hain:
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 5,  # Ek page par maximum 5 items show honge
 }
 
 SIMPLE_JWT = {
@@ -97,3 +120,31 @@ SIMPLE_JWT = {
     'AUTH_HEADER_TYPES': ('Bearer',),
 }
 AUTH_USER_MODEL = 'tasks.CustomUser'
+# ==========================================
+# LOGGING CONFIGURATION
+# ==========================================
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '{levelname} {asctime} {module} {message}',
+            'style': '{',
+        },
+    },
+    'handlers': {
+        'file': {
+            'level': 'WARNING',  # WARNING aur ERROR level ki details file mein save hongi
+            'class': 'logging.FileHandler',
+            'filename': BASE_DIR / 'debug.log',  # Project ke main folder mein debug.log file banegi
+            'formatter': 'verbose',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file'],
+            'level': 'WARNING',
+            'propagate': True,
+        },
+    },
+}

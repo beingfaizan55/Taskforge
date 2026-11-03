@@ -27,4 +27,5 @@ urlpatterns = [
     
     # Your app URLs
     path('api/', include('tasks.urls')),
+    #path('api/', include('tasks.urls')),
 ]

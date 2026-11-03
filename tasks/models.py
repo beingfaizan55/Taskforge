@@ -2,6 +2,7 @@ from django.conf import settings
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
+# 1. CustomUser
 class CustomUser(AbstractUser):
     ROLE_CHOICES = (
         ('admin', 'Admin'),
@@ -10,20 +11,25 @@ class CustomUser(AbstractUser):
     )
     role = models.CharField(max_length=20, choices=ROLE_CHOICES, default='user')
 
+# 2. Workspace (Top Level)
+class Workspace(models.Model):
+    name = models.CharField(max_length=255)
+    owner_id = models.IntegerField(db_index=True)
+    member_ids = models.JSONField(default=list, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.name
+
+# 3. Project
 class Project(models.Model):
-    name = models.CharField(max_length=150)
-    description = models.TextField(blank=True)
+    title = models.CharField(max_length=255, default='Untitled')
+    budget = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
     
-    owner = models.ForeignKey(
-        settings.AUTH_USER_MODEL,
-        on_delete=models.CASCADE,
-        related_name='owned_projects'
-    )
-    members = models.ManyToManyField(
-        settings.AUTH_USER_MODEL,
-        related_name='member_projects',
-        blank=True
-    )
+    workspace_id = models.IntegerField(db_index=True, null=True, blank=True) # Logical link to Workspace
+    owner_id = models.IntegerField(db_index=True)
+    member_ids = models.JSONField(default=list, blank=True) 
+
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -31,13 +37,14 @@ class Project(models.Model):
         ordering = ['-created_at']
 
     def __str__(self):
-        return self.name
+        return self.title
 
+# 4. Task
 class Task(models.Model):
     class Status(models.TextChoices):
-        TODO = 'TODO', 'To Do'
-        IN_PROGRESS = 'IN_PROGRESS', 'In Progress'
-        DONE = 'DONE', 'Done'
+        TODO = 'To Do'
+        IN_PROGRESS = 'In Progress'
+        DONE = 'Done'
 
     class Priority(models.TextChoices):
         LOW = 'LOW', 'Low'
@@ -50,23 +57,10 @@ class Task(models.Model):
     priority = models.CharField(max_length=20, choices=Priority.choices, default=Priority.MEDIUM)
     due_date = models.DateField(null=True, blank=True)
 
-    project = models.ForeignKey(
-        Project,
-        on_delete=models.CASCADE,
-        related_name='tasks'
-    )
-    assigned_to = models.ForeignKey(
-        settings.AUTH_USER_MODEL,
-        on_delete=models.SET_NULL,
-        null=True,
-        blank=True,
-        related_name='assigned_tasks'
-    )
-    collaborators = models.ManyToManyField(
-        settings.AUTH_USER_MODEL,
-        related_name='collaborated_tasks',
-        blank=True
-    )
+    project_id = models.IntegerField(db_index=True)
+    assigned_to_id = models.IntegerField(null=True, blank=True, db_index=True)
+    collaborator_ids = models.JSONField(default=list, blank=True)
+
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -75,3 +69,13 @@ class Task(models.Model):
 
     def __str__(self):
         return f"[{self.status}] {self.title}"
+
+# 5. TaskComment
+class TaskComment(models.Model):
+    text = models.TextField()
+    task_id = models.IntegerField(db_index=True) 
+    user_id = models.IntegerField(db_index=True) 
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Comment on Task {self.task_id} by User {self.user_id}"
