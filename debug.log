@@ -279,3 +279,840 @@ ERROR 2026-11-03 22:23:46,765 log "POST /admin/tasks/workspace/add/ HTTP/1.1" 50
 WARNING 2026-11-03 22:58:41,275 log Unauthorized: /api/auth/login/
 WARNING 2026-11-03 22:58:41,280 log "POST /api/auth/login/ HTTP/1.1" 401 12443
 WARNING 2026-11-03 23:59:58,316 log Forbidden: /api/projects/
+WARNING 2026-11-04 20:52:58,669 log Not Found: /favicon.ico
+WARNING 2026-11-04 20:52:58,673 log "GET /favicon.ico HTTP/1.1" 404 2767
+WARNING 2026-11-04 21:18:37,738 log Forbidden: /api/tasks/
+WARNING 2026-11-04 21:18:37,742 log "POST /api/tasks/ HTTP/1.1" 403 10039
+WARNING 2026-11-04 21:18:53,928 log Forbidden: /api/tasks/
+WARNING 2026-11-04 21:18:53,930 log "POST /api/tasks/ HTTP/1.1" 403 10039
+WARNING 2026-11-04 21:38:23,112 log Bad Request: /api/tasks/
+WARNING 2026-11-04 21:38:23,122 log "POST /api/tasks/ HTTP/1.1" 400 78
+WARNING 2026-11-04 21:39:02,971 log Bad Request: /api/tasks/
+WARNING 2026-11-04 21:39:02,972 log "POST /api/tasks/ HTTP/1.1" 400 78
+WARNING 2026-11-04 21:41:09,229 log Bad Request: /api/tasks/
+WARNING 2026-11-04 21:41:09,234 log "POST /api/tasks/ HTTP/1.1" 400 49
+WARNING 2026-11-04 21:43:31,317 log Bad Request: /api/tasks/
+WARNING 2026-11-04 21:43:31,321 log "POST /api/tasks/ HTTP/1.1" 400 49
+WARNING 2026-11-04 21:44:38,463 log Forbidden: /api/tasks/
+WARNING 2026-11-04 21:44:38,465 log "POST /api/tasks/ HTTP/1.1" 403 57
+WARNING 2026-11-04 21:47:22,749 log Not Found: /
+WARNING 2026-11-04 21:47:22,752 log "GET / HTTP/1.1" 404 2716
+WARNING 2026-11-04 21:47:22,848 log Not Found: /favicon.ico
+WARNING 2026-11-04 21:47:22,849 log "GET /favicon.ico HTTP/1.1" 404 2767
+WARNING 2026-11-04 21:52:07,083 log Unauthorized: /api/
+WARNING 2026-11-04 21:52:07,088 log "GET /api/ HTTP/1.1" 401 9781
+WARNING 2026-11-04 21:52:10,479 log Unauthorized: /api/
+WARNING 2026-11-04 21:52:10,480 log "GET /api/ HTTP/1.1" 401 9781
+WARNING 2026-11-04 21:52:15,330 log Not Found: /
+WARNING 2026-11-04 21:52:15,331 log "GET / HTTP/1.1" 404 2716
+WARNING 2026-11-04 21:53:16,238 log Not Found: /api/token/
+WARNING 2026-11-04 21:53:16,240 log "GET /api/token/ HTTP/1.1" 404 10059
+WARNING 2026-11-04 21:53:39,997 log Not Found: /api/login/
+WARNING 2026-11-04 21:53:39,999 log "GET /api/login/ HTTP/1.1" 404 10059
+WARNING 2026-11-04 21:53:51,640 log Not Found: /api/auth/
+WARNING 2026-11-04 21:53:51,641 log "GET /api/auth/ HTTP/1.1" 404 10056
+WARNING 2026-11-04 21:53:58,360 log Method Not Allowed: /api/auth/login/
+WARNING 2026-11-04 21:53:58,361 log "GET /api/auth/login/ HTTP/1.1" 405 12503
+WARNING 2026-11-04 22:42:49,061 log Not Found: /admin/unfold/img/site-logo.svg
+WARNING 2026-11-04 22:42:49,066 log "GET /admin/unfold/img/site-logo.svg HTTP/1.1" 404 7101
+WARNING 2026-11-04 22:46:46,314 log Not Found: /admin/unfold/img/site-logo.svg
+WARNING 2026-11-04 22:46:46,319 log "GET /admin/unfold/img/site-logo.svg HTTP/1.1" 404 7101
+WARNING 2026-11-04 22:46:57,299 log Not Found: /admin/rest_framework_api_key/unfold/img/site-logo.svg
+WARNING 2026-11-04 22:46:57,300 log "GET /admin/rest_framework_api_key/unfold/img/site-logo.svg HTTP/1.1" 404 7170
+WARNING 2026-11-04 22:47:21,053 log Not Found: /admin/auth/unfold/img/site-logo.svg
+WARNING 2026-11-04 22:47:21,055 log "GET /admin/auth/unfold/img/site-logo.svg HTTP/1.1" 404 7116
+WARNING 2026-11-04 22:47:23,612 log Not Found: /admin/tasks/unfold/img/site-logo.svg
+WARNING 2026-11-04 22:47:23,613 log "GET /admin/tasks/unfold/img/site-logo.svg HTTP/1.1" 404 7119
+WARNING 2026-11-04 22:49:35,026 log Not Found: /admin/tasks/unfold/img/site-logo.svg
+WARNING 2026-11-04 22:49:35,028 log "GET /admin/tasks/unfold/img/site-logo.svg HTTP/1.1" 404 7119
+WARNING 2026-11-04 22:49:37,338 log Not Found: /admin/unfold/img/site-logo.svg
+WARNING 2026-11-04 22:49:37,339 log "GET /admin/unfold/img/site-logo.svg HTTP/1.1" 404 7101
+WARNING 2026-11-04 22:49:58,120 log Not Found: /admin/unfold/img/site-logo.svg
+WARNING 2026-11-04 22:49:58,120 log "GET /admin/unfold/img/site-logo.svg HTTP/1.1" 404 7101
+WARNING 2026-11-04 22:50:01,329 log Not Found: /admin/unfold/img/site-logo.svg
+WARNING 2026-11-04 22:50:01,329 log "GET /admin/unfold/img/site-logo.svg HTTP/1.1" 404 7101
+WARNING 2026-11-04 22:56:38,461 log Not Found: /
+WARNING 2026-11-04 22:56:38,464 log "GET / HTTP/1.1" 404 2716
+WARNING 2026-11-04 23:06:46,040 log "GET /static/css/admin_custom.css HTTP/1.1" 404 1927
+WARNING 2026-11-04 23:06:50,906 log "GET /static/css/admin_custom.css HTTP/1.1" 404 1927
+WARNING 2026-11-04 23:07:04,344 log "GET /static/css/admin_custom.css HTTP/1.1" 404 1927
+WARNING 2026-11-04 23:07:08,751 log "GET /static/css/admin_custom.css HTTP/1.1" 404 1927
+WARNING 2026-11-04 23:07:12,905 log "GET /static/css/admin_custom.css HTTP/1.1" 404 1927
+WARNING 2026-11-04 23:07:30,464 log "GET /static/css/admin_custom.css HTTP/1.1" 404 1927
+WARNING 2026-11-04 23:09:07,205 log "GET /static/css/admin_custom.css HTTP/1.1" 404 1927
+WARNING 2026-11-04 23:09:13,257 log "GET /static/css/admin_custom.css HTTP/1.1" 404 1927
+WARNING 2026-11-04 23:09:21,555 log "GET /static/css/admin_custom.css HTTP/1.1" 404 1927
+WARNING 2026-11-04 23:09:27,742 log "GET /static/css/admin_custom.css HTTP/1.1" 404 1927
+WARNING 2026-11-04 23:09:31,420 log "GET /static/css/admin_custom.css HTTP/1.1" 404 1927
+WARNING 2026-11-04 23:09:32,364 log "GET /static/css/admin_custom.css HTTP/1.1" 404 1927
+WARNING 2026-11-04 23:09:34,708 log "GET /static/css/admin_custom.css HTTP/1.1" 404 1927
+WARNING 2026-11-04 23:18:25,208 log "GET /static/css/admin_custom.css HTTP/1.1" 404 1927
+WARNING 2026-11-04 23:18:27,738 log "GET /static/css/admin_custom.css HTTP/1.1" 404 1927
+WARNING 2026-11-04 23:18:47,268 log Not Found: /
+WARNING 2026-11-04 23:18:47,270 log "GET / HTTP/1.1" 404 2716
+WARNING 2026-11-04 23:18:48,974 log Not Found: /
+WARNING 2026-11-04 23:18:48,976 log "GET / HTTP/1.1" 404 2716
+WARNING 2026-11-04 23:18:52,951 log "GET /static/css/admin_custom.css HTTP/1.1" 404 1927
+WARNING 2026-11-04 23:19:11,430 log "GET /static/css/admin_custom.css HTTP/1.1" 404 1927
+ERROR 2026-11-04 23:21:26,779 log Internal Server Error: /admin/
+Traceback (most recent call last):
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\urls\base.py", line 81, in reverse
+    extra, resolver = resolver.namespace_dict[ns]
+                      ~~~~~~~~~~~~~~~~~~~~~~~^^^^
+KeyError: 'jet'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\core\handlers\exception.py", line 56, in inner
+    response = get_response(request)
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\core\handlers\base.py", line 222, in _get_response
+    response = response.render()
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\template\response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\template\response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\template\base.py", line 174, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\template\base.py", line 166, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\template\base.py", line 1107, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\template\base.py", line 1068, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\template\loader_tags.py", line 160, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\template\base.py", line 166, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\template\base.py", line 1107, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\template\base.py", line 1068, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\template\loader_tags.py", line 160, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\template\base.py", line 166, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\template\base.py", line 1107, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\template\base.py", line 1068, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\template\loader_tags.py", line 66, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\template\base.py", line 1107, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\template\base.py", line 1068, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\template\defaulttags.py", line 511, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\urls\base.py", line 92, in reverse
+    raise NoReverseMatch("%s is not a registered namespace" % key)
+django.urls.exceptions.NoReverseMatch: 'jet' is not a registered namespace
+ERROR 2026-11-04 23:21:26,851 log "GET /admin/ HTTP/1.1" 500 341826
+ERROR 2026-11-04 23:21:30,632 log Internal Server Error: /admin/
+Traceback (most recent call last):
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\urls\base.py", line 81, in reverse
+    extra, resolver = resolver.namespace_dict[ns]
+                      ~~~~~~~~~~~~~~~~~~~~~~~^^^^
+KeyError: 'jet'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\core\handlers\exception.py", line 56, in inner
+    response = get_response(request)
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\core\handlers\base.py", line 222, in _get_response
+    response = response.render()
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\template\response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\template\response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\template\base.py", line 174, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\template\base.py", line 166, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\template\base.py", line 1107, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\template\base.py", line 1068, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\template\loader_tags.py", line 160, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\template\base.py", line 166, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\template\base.py", line 1107, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\template\base.py", line 1068, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\template\loader_tags.py", line 160, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\template\base.py", line 166, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\template\base.py", line 1107, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\template\base.py", line 1068, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\template\loader_tags.py", line 66, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\template\base.py", line 1107, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\template\base.py", line 1068, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\template\defaulttags.py", line 511, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\urls\base.py", line 92, in reverse
+    raise NoReverseMatch("%s is not a registered namespace" % key)
+django.urls.exceptions.NoReverseMatch: 'jet' is not a registered namespace
+ERROR 2026-11-04 23:21:30,640 log "GET /admin/ HTTP/1.1" 500 341513
+ERROR 2026-11-04 23:21:37,010 log Internal Server Error: /admin/
+Traceback (most recent call last):
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\urls\base.py", line 81, in reverse
+    extra, resolver = resolver.namespace_dict[ns]
+                      ~~~~~~~~~~~~~~~~~~~~~~~^^^^
+KeyError: 'jet'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\core\handlers\exception.py", line 56, in inner
+    response = get_response(request)
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\core\handlers\base.py", line 222, in _get_response
+    response = response.render()
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\template\response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\template\response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\template\base.py", line 174, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\template\base.py", line 166, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\template\base.py", line 1107, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\template\base.py", line 1068, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\template\loader_tags.py", line 160, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\template\base.py", line 166, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\template\base.py", line 1107, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\template\base.py", line 1068, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\template\loader_tags.py", line 160, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\template\base.py", line 166, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\template\base.py", line 1107, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\template\base.py", line 1068, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\template\loader_tags.py", line 66, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\template\base.py", line 1107, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\template\base.py", line 1068, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\template\defaulttags.py", line 511, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\urls\base.py", line 92, in reverse
+    raise NoReverseMatch("%s is not a registered namespace" % key)
+django.urls.exceptions.NoReverseMatch: 'jet' is not a registered namespace
+ERROR 2026-11-04 23:21:37,016 log "GET /admin/ HTTP/1.1" 500 341657
+WARNING 2026-11-04 23:21:38,377 log Not Found: /
+WARNING 2026-11-04 23:21:38,378 log "GET / HTTP/1.1" 404 2716
+ERROR 2026-11-04 23:21:42,648 log Internal Server Error: /admin/
+Traceback (most recent call last):
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\urls\base.py", line 81, in reverse
+    extra, resolver = resolver.namespace_dict[ns]
+                      ~~~~~~~~~~~~~~~~~~~~~~~^^^^
+KeyError: 'jet'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\core\handlers\exception.py", line 56, in inner
+    response = get_response(request)
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\core\handlers\base.py", line 222, in _get_response
+    response = response.render()
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\template\response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\template\response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\template\base.py", line 174, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\template\base.py", line 166, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\template\base.py", line 1107, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\template\base.py", line 1068, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\template\loader_tags.py", line 160, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\template\base.py", line 166, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\template\base.py", line 1107, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\template\base.py", line 1068, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\template\loader_tags.py", line 160, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\template\base.py", line 166, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\template\base.py", line 1107, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\template\base.py", line 1068, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\template\loader_tags.py", line 66, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\template\base.py", line 1107, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\template\base.py", line 1068, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\template\defaulttags.py", line 511, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\urls\base.py", line 92, in reverse
+    raise NoReverseMatch("%s is not a registered namespace" % key)
+django.urls.exceptions.NoReverseMatch: 'jet' is not a registered namespace
+ERROR 2026-11-04 23:21:42,666 log "GET /admin/ HTTP/1.1" 500 341657
+ERROR 2026-11-04 23:21:43,624 log Internal Server Error: /admin/
+Traceback (most recent call last):
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\urls\base.py", line 81, in reverse
+    extra, resolver = resolver.namespace_dict[ns]
+                      ~~~~~~~~~~~~~~~~~~~~~~~^^^^
+KeyError: 'jet'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\core\handlers\exception.py", line 56, in inner
+    response = get_response(request)
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\core\handlers\base.py", line 222, in _get_response
+    response = response.render()
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\template\response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\template\response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\template\base.py", line 174, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\template\base.py", line 166, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\template\base.py", line 1107, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\template\base.py", line 1068, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\template\loader_tags.py", line 160, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\template\base.py", line 166, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\template\base.py", line 1107, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\template\base.py", line 1068, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\template\loader_tags.py", line 160, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\template\base.py", line 166, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\template\base.py", line 1107, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\template\base.py", line 1068, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\template\loader_tags.py", line 66, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\template\base.py", line 1107, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\template\base.py", line 1068, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\template\defaulttags.py", line 511, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\urls\base.py", line 92, in reverse
+    raise NoReverseMatch("%s is not a registered namespace" % key)
+django.urls.exceptions.NoReverseMatch: 'jet' is not a registered namespace
+ERROR 2026-11-04 23:21:43,643 log "GET /admin/ HTTP/1.1" 500 341513
+WARNING 2026-11-04 23:27:16,533 log "GET /static/jet/css/themes/violet/jquery-ui.theme.css?v=1.3.10 HTTP/1.1" 404 1999
+WARNING 2026-11-04 23:27:16,535 log "GET /static/jet/css/themes/violet/select2.theme.css?v=1.3.10 HTTP/1.1" 404 1993
+WARNING 2026-11-04 23:27:16,535 log "GET /static/jet/css/themes/violet/base.css?v=1.3.10 HTTP/1.1" 404 1966
+WARNING 2026-11-04 23:27:32,232 log "GET /static/jet/css/themes/red/jquery-ui.theme.css?v=1.3.10 HTTP/1.1" 404 1990
+WARNING 2026-11-04 23:27:32,233 log "GET /static/jet/css/themes/red/base.css?v=1.3.10 HTTP/1.1" 404 1957
+WARNING 2026-11-04 23:27:32,233 log "GET /static/jet/css/themes/red/select2.theme.css?v=1.3.10 HTTP/1.1" 404 1984
+WARNING 2026-11-04 23:27:36,443 log "GET /static/jet/css/themes/violet/base.css?v=1.3.10 HTTP/1.1" 404 1966
+WARNING 2026-11-04 23:27:36,451 log "GET /static/jet/css/themes/violet/select2.theme.css?v=1.3.10 HTTP/1.1" 404 1993
+WARNING 2026-11-04 23:27:36,451 log "GET /static/jet/css/themes/violet/jquery-ui.theme.css?v=1.3.10 HTTP/1.1" 404 1999
+WARNING 2026-11-04 23:27:44,209 log "GET /static/jet/css/themes/violet/base.css?v=1.3.10 HTTP/1.1" 404 1966
+WARNING 2026-11-04 23:27:44,211 log "GET /static/jet/css/themes/violet/select2.theme.css?v=1.3.10 HTTP/1.1" 404 1993
+WARNING 2026-11-04 23:27:44,212 log "GET /static/jet/css/themes/violet/jquery-ui.theme.css?v=1.3.10 HTTP/1.1" 404 1999
+WARNING 2026-11-04 23:27:54,496 log "GET /static/jet/css/themes/red/base.css?v=1.3.10 HTTP/1.1" 404 1957
+WARNING 2026-11-04 23:27:54,499 log "GET /static/jet/css/themes/red/select2.theme.css?v=1.3.10 HTTP/1.1" 404 1984
+WARNING 2026-11-04 23:27:54,506 log "GET /static/jet/css/themes/red/jquery-ui.theme.css?v=1.3.10 HTTP/1.1" 404 1990
+WARNING 2026-11-04 23:28:00,713 log "GET /static/jet/css/themes/red/base.css?v=1.3.10 HTTP/1.1" 404 1957
+WARNING 2026-11-04 23:28:00,727 log "GET /static/jet/css/themes/red/select2.theme.css?v=1.3.10 HTTP/1.1" 404 1984
+WARNING 2026-11-04 23:28:00,728 log "GET /static/jet/css/themes/red/jquery-ui.theme.css?v=1.3.10 HTTP/1.1" 404 1990
+WARNING 2026-11-04 23:28:10,881 log "GET /static/jet/css/themes/red/select2.theme.css?v=1.3.10 HTTP/1.1" 404 1984
+WARNING 2026-11-04 23:28:16,576 log "GET /static/jet/css/themes/red/base.css?v=1.3.10 HTTP/1.1" 404 1957
+WARNING 2026-11-04 23:28:16,576 log "GET /static/jet/css/themes/red/select2.theme.css?v=1.3.10 HTTP/1.1" 404 1984
+WARNING 2026-11-04 23:28:16,576 log "GET /static/jet/css/themes/red/jquery-ui.theme.css?v=1.3.10 HTTP/1.1" 404 1990
+WARNING 2026-11-04 23:28:51,680 log "GET /static/jet/css/themes/red/base.css?v=1.3.10 HTTP/1.1" 404 1957
+WARNING 2026-11-04 23:28:51,694 log "GET /static/jet/css/themes/red/select2.theme.css?v=1.3.10 HTTP/1.1" 404 1984
+WARNING 2026-11-04 23:28:51,695 log "GET /static/jet/css/themes/red/jquery-ui.theme.css?v=1.3.10 HTTP/1.1" 404 1990
+ERROR 2026-11-04 23:45:23,357 log Internal Server Error: /admin/
+Traceback (most recent call last):
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\core\handlers\exception.py", line 56, in inner
+    response = get_response(request)
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\core\handlers\base.py", line 199, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\contrib\admin\sites.py", line 267, in wrapper
+    return self.admin_view(view, cacheable)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\utils\decorators.py", line 191, in _view_wrapper
+    result = _process_exception(request, e)
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\utils\decorators.py", line 189, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\views\decorators\cache.py", line 79, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\contrib\admin\sites.py", line 248, in inner
+    return view(request, *args, **kwargs)
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\unfold\sites.py", line 125, in index
+    **self.each_context(request),
+      ~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\unfold\sites.py", line 62, in each_context
+    "site_icon": self._get_theme_images("SITE_ICON", request),
+                 ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\unfold\sites.py", line 524, in _get_theme_images
+    "light": self._get_value(images["light"], *args),
+             ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\unfold\sites.py", line 598, in _get_value
+    return value(*args)
+  File "C:\Users\faiza\Desktop\TaskForge\config\settings.py", line 196, in <lambda>
+    "light": lambda request: static("images/logo.svg"),  # Optional if you have a logo
+                             ^^^^^^
+NameError: name 'static' is not defined
+ERROR 2026-11-04 23:45:23,432 log "GET /admin/ HTTP/1.1" 500 128881
+ERROR 2026-11-04 23:45:51,918 log Internal Server Error: /admin/
+Traceback (most recent call last):
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\core\handlers\exception.py", line 56, in inner
+    response = get_response(request)
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\core\handlers\base.py", line 199, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\contrib\admin\sites.py", line 267, in wrapper
+    return self.admin_view(view, cacheable)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\utils\decorators.py", line 191, in _view_wrapper
+    result = _process_exception(request, e)
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\utils\decorators.py", line 189, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\views\decorators\cache.py", line 79, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\contrib\admin\sites.py", line 248, in inner
+    return view(request, *args, **kwargs)
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\unfold\sites.py", line 125, in index
+    **self.each_context(request),
+      ~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\unfold\sites.py", line 62, in each_context
+    "site_icon": self._get_theme_images("SITE_ICON", request),
+                 ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\unfold\sites.py", line 524, in _get_theme_images
+    "light": self._get_value(images["light"], *args),
+             ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\unfold\sites.py", line 598, in _get_value
+    return value(*args)
+  File "C:\Users\faiza\Desktop\TaskForge\config\settings.py", line 196, in <lambda>
+    "light": lambda request: static("images/logo.svg"),  # Optional if you have a logo
+                             ^^^^^^
+NameError: name 'static' is not defined
+ERROR 2026-11-04 23:45:51,930 log "GET /admin/ HTTP/1.1" 500 128888
+ERROR 2026-11-04 23:49:48,952 log Internal Server Error: /admin/
+Traceback (most recent call last):
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\core\handlers\exception.py", line 56, in inner
+    response = get_response(request)
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\core\handlers\base.py", line 199, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\contrib\admin\sites.py", line 267, in wrapper
+    return self.admin_view(view, cacheable)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\utils\decorators.py", line 191, in _view_wrapper
+    result = _process_exception(request, e)
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\utils\decorators.py", line 189, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\views\decorators\cache.py", line 79, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\contrib\admin\sites.py", line 248, in inner
+    return view(request, *args, **kwargs)
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\unfold\sites.py", line 125, in index
+    **self.each_context(request),
+      ~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\unfold\sites.py", line 94, in each_context
+    sidebar_config.get("show_all_applications"), request
+    ^^^^^^^^^^^^^^^^^^
+AttributeError: 'set' object has no attribute 'get'
+ERROR 2026-11-04 23:49:49,014 log "GET /admin/ HTTP/1.1" 500 113219
+ERROR 2026-11-04 23:50:16,163 log Internal Server Error: /admin/
+Traceback (most recent call last):
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\core\handlers\exception.py", line 56, in inner
+    response = get_response(request)
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\core\handlers\base.py", line 199, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\contrib\admin\sites.py", line 267, in wrapper
+    return self.admin_view(view, cacheable)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\utils\decorators.py", line 191, in _view_wrapper
+    result = _process_exception(request, e)
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\utils\decorators.py", line 189, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\views\decorators\cache.py", line 79, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\contrib\admin\sites.py", line 248, in inner
+    return view(request, *args, **kwargs)
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\unfold\sites.py", line 125, in index
+    **self.each_context(request),
+      ~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\unfold\sites.py", line 94, in each_context
+    sidebar_config.get("show_all_applications"), request
+    ^^^^^^^^^^^^^^^^^^
+AttributeError: 'set' object has no attribute 'get'
+ERROR 2026-11-04 23:50:16,170 log "GET /admin/ HTTP/1.1" 500 113370
+WARNING 2026-11-04 23:50:17,817 log Not Found: /
+WARNING 2026-11-04 23:50:17,819 log "GET / HTTP/1.1" 404 2716
+ERROR 2026-11-04 23:50:22,063 log Internal Server Error: /admin/
+Traceback (most recent call last):
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\core\handlers\exception.py", line 56, in inner
+    response = get_response(request)
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\core\handlers\base.py", line 199, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\contrib\admin\sites.py", line 267, in wrapper
+    return self.admin_view(view, cacheable)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\utils\decorators.py", line 191, in _view_wrapper
+    result = _process_exception(request, e)
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\utils\decorators.py", line 189, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\views\decorators\cache.py", line 79, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\contrib\admin\sites.py", line 248, in inner
+    return view(request, *args, **kwargs)
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\unfold\sites.py", line 125, in index
+    **self.each_context(request),
+      ~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\unfold\sites.py", line 94, in each_context
+    sidebar_config.get("show_all_applications"), request
+    ^^^^^^^^^^^^^^^^^^
+AttributeError: 'set' object has no attribute 'get'
+ERROR 2026-11-04 23:50:22,065 log "GET /admin/ HTTP/1.1" 500 113370
+ERROR 2026-11-04 23:50:23,295 log Internal Server Error: /admin/
+Traceback (most recent call last):
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\core\handlers\exception.py", line 56, in inner
+    response = get_response(request)
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\core\handlers\base.py", line 199, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\contrib\admin\sites.py", line 267, in wrapper
+    return self.admin_view(view, cacheable)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\utils\decorators.py", line 191, in _view_wrapper
+    result = _process_exception(request, e)
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\utils\decorators.py", line 189, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\views\decorators\cache.py", line 79, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\contrib\admin\sites.py", line 248, in inner
+    return view(request, *args, **kwargs)
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\unfold\sites.py", line 125, in index
+    **self.each_context(request),
+      ~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\unfold\sites.py", line 94, in each_context
+    sidebar_config.get("show_all_applications"), request
+    ^^^^^^^^^^^^^^^^^^
+AttributeError: 'set' object has no attribute 'get'
+ERROR 2026-11-04 23:50:23,298 log "GET /admin/ HTTP/1.1" 500 113226
+ERROR 2026-11-04 23:51:55,701 log Internal Server Error: /admin/
+Traceback (most recent call last):
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\core\handlers\exception.py", line 56, in inner
+    response = get_response(request)
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\core\handlers\base.py", line 199, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\contrib\admin\sites.py", line 267, in wrapper
+    return self.admin_view(view, cacheable)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\utils\decorators.py", line 191, in _view_wrapper
+    result = _process_exception(request, e)
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\utils\decorators.py", line 189, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\views\decorators\cache.py", line 79, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\contrib\admin\sites.py", line 248, in inner
+    return view(request, *args, **kwargs)
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\unfold\sites.py", line 125, in index
+    **self.each_context(request),
+      ~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\unfold\sites.py", line 94, in each_context
+    sidebar_config.get("show_all_applications"), request
+    ^^^^^^^^^^^^^^^^^^
+AttributeError: 'set' object has no attribute 'get'
+ERROR 2026-11-04 23:51:55,761 log "GET /admin/ HTTP/1.1" 500 113363
+ERROR 2026-11-04 23:51:58,341 log Internal Server Error: /admin/
+Traceback (most recent call last):
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\core\handlers\exception.py", line 56, in inner
+    response = get_response(request)
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\core\handlers\base.py", line 199, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\contrib\admin\sites.py", line 267, in wrapper
+    return self.admin_view(view, cacheable)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\utils\decorators.py", line 191, in _view_wrapper
+    result = _process_exception(request, e)
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\utils\decorators.py", line 189, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\views\decorators\cache.py", line 79, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\contrib\admin\sites.py", line 248, in inner
+    return view(request, *args, **kwargs)
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\unfold\sites.py", line 125, in index
+    **self.each_context(request),
+      ~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\unfold\sites.py", line 94, in each_context
+    sidebar_config.get("show_all_applications"), request
+    ^^^^^^^^^^^^^^^^^^
+AttributeError: 'set' object has no attribute 'get'
+ERROR 2026-11-04 23:51:58,347 log "GET /admin/ HTTP/1.1" 500 113363
+ERROR 2026-11-04 23:51:59,100 log Internal Server Error: /admin/
+Traceback (most recent call last):
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\core\handlers\exception.py", line 56, in inner
+    response = get_response(request)
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\core\handlers\base.py", line 199, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\contrib\admin\sites.py", line 267, in wrapper
+    return self.admin_view(view, cacheable)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\utils\decorators.py", line 191, in _view_wrapper
+    result = _process_exception(request, e)
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\utils\decorators.py", line 189, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\views\decorators\cache.py", line 79, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\contrib\admin\sites.py", line 248, in inner
+    return view(request, *args, **kwargs)
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\unfold\sites.py", line 125, in index
+    **self.each_context(request),
+      ~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\unfold\sites.py", line 94, in each_context
+    sidebar_config.get("show_all_applications"), request
+    ^^^^^^^^^^^^^^^^^^
+AttributeError: 'set' object has no attribute 'get'
+ERROR 2026-11-04 23:51:59,106 log "GET /admin/ HTTP/1.1" 500 113363
+ERROR 2026-11-04 23:51:59,573 log Internal Server Error: /admin/
+Traceback (most recent call last):
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\core\handlers\exception.py", line 56, in inner
+    response = get_response(request)
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\core\handlers\base.py", line 199, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\contrib\admin\sites.py", line 267, in wrapper
+    return self.admin_view(view, cacheable)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\utils\decorators.py", line 191, in _view_wrapper
+    result = _process_exception(request, e)
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\utils\decorators.py", line 189, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\views\decorators\cache.py", line 79, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\contrib\admin\sites.py", line 248, in inner
+    return view(request, *args, **kwargs)
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\unfold\sites.py", line 125, in index
+    **self.each_context(request),
+      ~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\unfold\sites.py", line 94, in each_context
+    sidebar_config.get("show_all_applications"), request
+    ^^^^^^^^^^^^^^^^^^
+AttributeError: 'set' object has no attribute 'get'
+ERROR 2026-11-04 23:51:59,578 log "GET /admin/ HTTP/1.1" 500 113363
+WARNING 2026-11-04 23:54:01,096 log Forbidden: /api/tasks/
+WARNING 2026-11-04 23:54:01,099 log "POST /api/tasks/ HTTP/1.1" 403 10039
+ERROR 2026-11-04 23:54:07,141 log Internal Server Error: /admin/
+Traceback (most recent call last):
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\core\handlers\exception.py", line 56, in inner
+    response = get_response(request)
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\core\handlers\base.py", line 199, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\contrib\admin\sites.py", line 267, in wrapper
+    return self.admin_view(view, cacheable)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\utils\decorators.py", line 191, in _view_wrapper
+    result = _process_exception(request, e)
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\utils\decorators.py", line 189, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\views\decorators\cache.py", line 79, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\contrib\admin\sites.py", line 248, in inner
+    return view(request, *args, **kwargs)
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\unfold\sites.py", line 125, in index
+    **self.each_context(request),
+      ~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\unfold\sites.py", line 94, in each_context
+    sidebar_config.get("show_all_applications"), request
+    ^^^^^^^^^^^^^^^^^^
+AttributeError: 'set' object has no attribute 'get'
+ERROR 2026-11-04 23:54:07,205 log "GET /admin/ HTTP/1.1" 500 113285
+ERROR 2026-11-04 23:54:09,215 log Internal Server Error: /admin/
+Traceback (most recent call last):
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\core\handlers\exception.py", line 56, in inner
+    response = get_response(request)
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\core\handlers\base.py", line 199, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\contrib\admin\sites.py", line 267, in wrapper
+    return self.admin_view(view, cacheable)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\utils\decorators.py", line 191, in _view_wrapper
+    result = _process_exception(request, e)
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\utils\decorators.py", line 189, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\views\decorators\cache.py", line 79, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\contrib\admin\sites.py", line 248, in inner
+    return view(request, *args, **kwargs)
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\unfold\sites.py", line 125, in index
+    **self.each_context(request),
+      ~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\unfold\sites.py", line 94, in each_context
+    sidebar_config.get("show_all_applications"), request
+    ^^^^^^^^^^^^^^^^^^
+AttributeError: 'set' object has no attribute 'get'
+ERROR 2026-11-04 23:54:09,225 log "GET /admin/ HTTP/1.1" 500 113141
+ERROR 2026-11-04 23:58:58,350 log Internal Server Error: /admin/
+Traceback (most recent call last):
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\core\handlers\exception.py", line 56, in inner
+    response = get_response(request)
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\core\handlers\base.py", line 199, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\contrib\admin\sites.py", line 267, in wrapper
+    return self.admin_view(view, cacheable)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\utils\decorators.py", line 191, in _view_wrapper
+    result = _process_exception(request, e)
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\utils\decorators.py", line 189, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\views\decorators\cache.py", line 79, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\contrib\admin\sites.py", line 248, in inner
+    return view(request, *args, **kwargs)
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\unfold\sites.py", line 125, in index
+    **self.each_context(request),
+      ~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\unfold\sites.py", line 94, in each_context
+    sidebar_config.get("show_all_applications"), request
+    ^^^^^^^^^^^^^^^^^^
+AttributeError: 'set' object has no attribute 'get'
+ERROR 2026-11-04 23:58:58,399 log "GET /admin/ HTTP/1.1" 500 113278
+ERROR 2026-11-04 23:59:02,984 log Internal Server Error: /admin/
+Traceback (most recent call last):
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\core\handlers\exception.py", line 56, in inner
+    response = get_response(request)
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\core\handlers\base.py", line 199, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\contrib\admin\sites.py", line 267, in wrapper
+    return self.admin_view(view, cacheable)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\utils\decorators.py", line 191, in _view_wrapper
+    result = _process_exception(request, e)
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\utils\decorators.py", line 189, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\views\decorators\cache.py", line 79, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\django\contrib\admin\sites.py", line 248, in inner
+    return view(request, *args, **kwargs)
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\unfold\sites.py", line 125, in index
+    **self.each_context(request),
+      ~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\faiza\Desktop\TaskForge\venv\Lib\site-packages\unfold\sites.py", line 94, in each_context
+    sidebar_config.get("show_all_applications"), request
+    ^^^^^^^^^^^^^^^^^^
+AttributeError: 'set' object has no attribute 'get'
+ERROR 2026-11-04 23:59:02,994 log "GET /admin/ HTTP/1.1" 500 113141

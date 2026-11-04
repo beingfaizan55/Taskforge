@@ -1,0 +1,36 @@
+/* ==========================================
+   TaskForge Admin - Custom Unfold Theme CSS
+   ========================================== */
+
+/* Highlight Input Fields & Textareas on Focus */
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="number"]:focus,
+input[type="url"]:focus,
+input[type="date"]:focus,
+select:focus,
+textarea:focus {
+    border-color: #7c3aed !important; /* Modern SaaS Purple Glow */
+    box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.15) !important;
+    outline: none !important;
+}
+
+/* Default Input Styling for Better Visibility */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+input[type="url"],
+input[type="date"],
+select,
+textarea {
+    border-radius: 6px !important;
+    border-color: #cbd5e1 !important;
+    padding: 8px 12px !important;
+}
+
+/* Sidebar Styling & Smooth Transition */
+.sidebar-item {
+    transition: all 0.2s ease-in-out;
+}

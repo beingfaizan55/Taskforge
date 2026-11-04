@@ -1,7 +1,7 @@
 import os
 from pathlib import Path
 import environ
-
+from django.templatetags.static import static
 # 1. Project Directory
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -21,6 +21,7 @@ SPECTACULAR_SETTINGS = {
     'VERSION': '1.0.0',
 }
 INSTALLED_APPS = [
+    'unfold',  # Added for API documentation
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -147,4 +148,98 @@ LOGGING = {
             'propagate': True,
         },
     },
+}
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://127.0.0.1:6379/1",  # Local Redis server URL
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        }
+    }
+}
+
+# (Optional) Session engine ko bhi Redis par shift kar dein fast performance ke liye
+SESSION_ENGINE = "django.contrib.sessions.backends.cache"
+SESSION_CACHE_ALIAS = "default"
+
+# CELERY SETTINGS (Redis Broker)
+CELERY_BROKER_URL = 'redis://127.0.0.1:6379/0'
+CELERY_RESULT_BACKEND = 'redis://127.0.0.1:6379/0'
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
+
+# EMAIL SETTINGS
+#EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+#EMAIL_HOST = 'smtp.gmail.com'
+#EMAIL_PORT = 587
+#EMAIL_USE_TLS = True
+#EMAIL_HOST_USER = '70145511@student.uol.edu.pk'  # Apna asli Gmail likhein
+#EMAIL_HOST_PASSWORD = 'Fai0107$0107' # Yahan 16-hisson wala App Password aayega
+
+# TESTING EMAIL BACKEND (Console par email print karega)
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# admin theme settings
+# ==========================================
+# Django Jet - Best Theme & Color Settings
+# ==========================================
+# ==========================================
+# Django Unfold Professional Configuration
+# ==========================================
+
+UNFOLD = {
+    "SITE_TITLE": "TaskForge Admin",
+    "SITE_HEADER": "TaskForge Dashboard",
+    
+    # Yeh yaad rakhein ke STYLES hamesha [] list honi chahiye, {} set nahi!
+    "STYLES": [
+        lambda request: static("css/admin_custom.css"),
+    ],
+
+    "SIDEBAR": {
+        "show_search": True,
+        "show_all_applications": False,
+        "navigation": [
+            {
+                "title": "Task Management",
+                "separator": True,
+                "items": [
+                    {
+                        "title": "Workspaces",
+                        "icon": "apartment",
+                        "link": "/admin/tasks/workspace/",
+                    },
+                    {
+                        "title": "Projects",
+                        "icon": "folder",
+                        "link": "/admin/tasks/project/",
+                    },
+                    {
+                        "title": "Tasks",
+                        "icon": "task",
+                        "link": "/admin/tasks/task/",
+                    },
+                    {
+                        "title": "Task Comments",
+                        "icon": "comment",
+                        "link": "/admin/tasks/taskcomment/",
+                    },
+                    {
+                        "title": "Users",
+                        "icon": "person",
+                        "link": "/admin/tasks/customuser/",
+                    },
+                ],
+            },
+        ],
+    },
+}
+
+UNFOLD = {
+    "SITE_TITLE": "TaskForge Admin",
+    "SITE_HEADER": "TaskForge Dashboard",
+    "SIDEBAR": {
+        ...
+    }
 }
