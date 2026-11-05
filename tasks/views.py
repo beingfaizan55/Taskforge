@@ -1,17 +1,74 @@
+import os
+import pickle
+import __main__
+from django.conf import settings
+
+# Required imports for Google OAuth2
+from allauth.socialaccount.providers.google.views import GoogleOAuth2Adapter
+from allauth.socialaccount.providers.oauth2.client import OAuth2Client
+from dj_rest_auth.registration.views import SocialLoginView
+
 from django.utils.decorators import method_decorator
 from django.views.decorators.cache import cache_page
 from django.core.cache import cache  # 👈 IMPORTED CACHE HERE
+
+# DRF Imports
 from rest_framework.permissions import IsAuthenticated
 from rest_framework import viewsets
-from django_filters.rest_framework import DjangoFilterBackend
-from rest_framework.filters import SearchFilter, OrderingFilter
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.response import Response
 from rest_framework.exceptions import PermissionDenied
+from rest_framework.filters import SearchFilter, OrderingFilter
+from django_filters.rest_framework import DjangoFilterBackend
 
 # Import all 4 Tables
 from .models import Workspace, Project, Task, TaskComment
 from .serializers import WorkspaceSerializer, ProjectSerializer, TaskSerializer, TaskCommentSerializer
 from .permissions import IsOwnerOrCollaborator
 from .exceptions import TaskLimitExceeded
+
+
+# ---------------------------------------------------------
+# AI MASTER MODEL CLASS & LOADER
+# ---------------------------------------------------------
+class TaskMasterPipeline:
+    def __init__(self, vectorizer, nb_model, id3_model, linear_model):
+        self.vectorizer = vectorizer
+        self.nb_model = nb_model
+        self.id3_model = id3_model
+        self.linear_model = linear_model
+        self.category_map = {'Design': 0, 'Finance': 1, 'Health': 2, 'Personal': 3, 'Study': 4, 'Work': 5}
+        
+    def predict_all(self, task_text):
+        vec = self.vectorizer.transform([task_text])
+        category = self.nb_model.predict(vec)[0]
+        cat_num = self.category_map.get(category, 0)
+        
+        priority = self.id3_model.predict([[cat_num]])[0]
+        time = self.linear_model.predict([[len(task_text), cat_num]])[0]
+        
+        return {
+            "category": category,
+            "priority": priority,
+            "estimated_hours": round(max(0.5, float(time)), 1)
+        }
+
+# Trick: Tell Python this class is the same one used to create the pickle file
+setattr(__main__, 'TaskMasterPipeline', TaskMasterPipeline)
+
+# Load Master Model (Fails gracefully if file is missing)
+try:
+    MASTER_MODEL_PATH = os.path.join(settings.BASE_DIR, 'ml_engine', 'master_model.pkl')
+    with open(MASTER_MODEL_PATH, 'rb') as f:
+        master_pipeline = pickle.load(f)
+except Exception as e:
+    print(f"⚠️ Warning: Could not load ML model: {e}")
+    master_pipeline = None
+
+
+# ---------------------------------------------------------
+# API VIEWSETS
+# ---------------------------------------------------------
 
 # 1. WORKSPACE VIEWSET (Top Level)
 class WorkspaceViewSet(viewsets.ModelViewSet):
@@ -108,7 +165,7 @@ class TaskViewSet(viewsets.ModelViewSet):
         return super().list(request, *args, **kwargs)
 
 
-# 4. TASK COMMENT VIEWSET (New)
+# 4. TASK COMMENT VIEWSET
 class TaskCommentViewSet(viewsets.ModelViewSet):
     serializer_class = TaskCommentSerializer
     permission_classes = [IsOwnerOrCollaborator]
@@ -130,3 +187,38 @@ class TaskCommentViewSet(viewsets.ModelViewSet):
             
         # Manually assign user_id
         serializer.save(user_id=self.request.user.id)
+
+
+# ---------------------------------------------------------
+# 5. AI PREDICTION ENDPOINT
+# ---------------------------------------------------------
+@api_view(['POST'])
+#@permission_classes([IsAuthenticated])
+def predict_task_api(request):
+    if not master_pipeline:
+        return Response({'error': 'ML Master Model is missing or not loaded.'}, status=500)
+        
+    # DRF uses request.data instead of json.loads(request.body)
+    task_text = request.data.get('task_text', '')
+    
+    if not task_text:
+        return Response({'error': 'Task text is missing!'}, status=400)
+        
+    try:
+        predictions = master_pipeline.predict_all(task_text)
+        return Response({
+            'success': True,
+            'task_input': task_text,
+            'ai_results': predictions
+        })
+    except Exception as e:
+        return Response({'error': str(e)}, status=500)
+
+
+# ---------------------------------------------------------
+# 6. GOOGLE AUTH LOGIN
+# ---------------------------------------------------------
+class GoogleLogin(SocialLoginView):
+    adapter_class = GoogleOAuth2Adapter
+    callback_url = "http://127.0.0.1:8000/accounts/google/login/callback/"
+    client_class = OAuth2Client

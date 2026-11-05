@@ -32,6 +32,7 @@ class TaskSerializer(serializers.ModelSerializer):
     class Meta:
         model = Task
         fields = '__all__' 
+        fields = ['id', 'title', 'description', 'priority', 'category', 'estimated_hours', 'project_id', 'created_at']
 
     def get_project_name(self, obj):
         try:

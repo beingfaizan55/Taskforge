@@ -2,6 +2,7 @@ import os
 from pathlib import Path
 import environ
 from django.templatetags.static import static
+
 # 1. Project Directory
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -20,21 +21,36 @@ SPECTACULAR_SETTINGS = {
     'DESCRIPTION': 'Backend API for the TaskForge project management system.',
     'VERSION': '1.0.0',
 }
+
 INSTALLED_APPS = [
-    'unfold',  # Added for API documentation
+    'unfold',  # Added for Django Unfold Theme
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rest_framework',   # Added DRF
+    'django.contrib.sites',  # OAUTH STEP: Required for allauth
+    
+    'rest_framework',   
+    'rest_framework.authtoken', # OAUTH STEP: Required for dj-rest-auth
     'rest_framework_simplejwt',
     'rest_framework_api_key',
+    
+    # OAUTH STEP: allauth and dj-rest-auth apps
+    'dj_rest_auth',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google', # Google OAuth Provider
+    
     'django_filters',
     'drf_spectacular',
     'tasks.apps.TasksConfig',
 ]
+
+# OAUTH STEP: Site ID is required by django.contrib.sites
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -44,6 +60,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'allauth.account.middleware.AccountMiddleware', # OAUTH STEP: allauth middleware
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -66,17 +83,17 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'config.wsgi.application'
 
-# Tuesday Deliverable: PostgreSQL Database Connection
+# PostgreSQL Database Connection
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'taskforge_db',       # Must match the database name you created
-        'USER': 'postgres',           # Your PostgreSQL username (usually 'postgres')
-        'PASSWORD': 'Fai123$0',  # Your actual PostgreSQL password set during installation
+        'NAME': 'taskforge_db',       
+        'USER': 'postgres',           
+        'PASSWORD': 'Fai123$0',  
         'HOST': 'localhost',
         'PORT': '5432',
         'TEST': {
-            'NAME': 'taskforge_fresh_test_db',  # Is naye naam se purana corrupt DB ignore ho jayega
+            'NAME': 'taskforge_fresh_test_db',  
         },
     }
 }
@@ -108,11 +125,9 @@ REST_FRAMEWORK = {
     'DEFAULT_FILTER_BACKENDS': [
         'django_filters.rest_framework.DjangoFilterBackend',
     ],
-    # Move the schema class here, outside the tuples
     'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
-    # Yeh do lines pagination ko activate karti hain:
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-    'PAGE_SIZE': 5,  # Ek page par maximum 5 items show honge
+    'PAGE_SIZE': 5,  
 }
 
 SIMPLE_JWT = {
@@ -120,7 +135,25 @@ SIMPLE_JWT = {
     'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
     'AUTH_HEADER_TYPES': ('Bearer',),
 }
+
 AUTH_USER_MODEL = 'tasks.CustomUser'
+
+# OAUTH STEP: Authentication Backends
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+
+# OAUTH STEP: dj-rest-auth JWT Configuration
+REST_AUTH = {
+    'USE_JWT': True,
+    'JWT_AUTH_COOKIE': 'taskforge-auth',
+    'JWT_AUTH_REFRESH_COOKIE': 'taskforge-refresh-token',
+}
+# OAUTH STEP: allauth Basic Settings (Email based login)
+ACCOUNT_LOGIN_METHODS = {'email'}
+ACCOUNT_SIGNUP_FIELDS = ['email*', 'password1*', 'password2*']
+ACCOUNT_EMAIL_VERIFICATION = 'none'
 # ==========================================
 # LOGGING CONFIGURATION
 # ==========================================
@@ -135,9 +168,9 @@ LOGGING = {
     },
     'handlers': {
         'file': {
-            'level': 'WARNING',  # WARNING aur ERROR level ki details file mein save hongi
+            'level': 'WARNING',  
             'class': 'logging.FileHandler',
-            'filename': BASE_DIR / 'debug.log',  # Project ke main folder mein debug.log file banegi
+            'filename': BASE_DIR / 'debug.log',  
             'formatter': 'verbose',
         },
     },
@@ -149,19 +182,19 @@ LOGGING = {
         },
     },
 }
+
 CACHES = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": "redis://127.0.0.1:6379/1",  # Local Redis server URL
+        "LOCATION": "redis://127.0.0.1:6379/1",  
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
         }
     }
 }
 
-# (Optional) Session engine ko bhi Redis par shift kar dein fast performance ke liye
-SESSION_ENGINE = "django.contrib.sessions.backends.cache"
-SESSION_CACHE_ALIAS = "default"
+#SESSION_ENGINE = "django.contrib.sessions.backends.cache"
+#SESSION_CACHE_ALIAS = "default"
 
 # CELERY SETTINGS (Redis Broker)
 CELERY_BROKER_URL = 'redis://127.0.0.1:6379/0'
@@ -169,21 +202,9 @@ CELERY_RESULT_BACKEND = 'redis://127.0.0.1:6379/0'
 CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
 
-# EMAIL SETTINGS
-#EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-#EMAIL_HOST = 'smtp.gmail.com'
-#EMAIL_PORT = 587
-#EMAIL_USE_TLS = True
-#EMAIL_HOST_USER = '70145511@student.uol.edu.pk'  # Apna asli Gmail likhein
-#EMAIL_HOST_PASSWORD = 'Fai0107$0107' # Yahan 16-hisson wala App Password aayega
-
 # TESTING EMAIL BACKEND (Console par email print karega)
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-# admin theme settings
-# ==========================================
-# Django Jet - Best Theme & Color Settings
-# ==========================================
 # ==========================================
 # Django Unfold Professional Configuration
 # ==========================================
@@ -191,8 +212,9 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 UNFOLD = {
     "SITE_TITLE": "TaskForge Admin",
     "SITE_HEADER": "TaskForge Dashboard",
+    "SITE_URL": "/admin/",
     
-    # Yeh yaad rakhein ke STYLES hamesha [] list honi chahiye, {} set nahi!
+    # STYLES list [] mein hai
     "STYLES": [
         lambda request: static("css/admin_custom.css"),
     ],
@@ -234,12 +256,4 @@ UNFOLD = {
             },
         ],
     },
-}
-
-UNFOLD = {
-    "SITE_TITLE": "TaskForge Admin",
-    "SITE_HEADER": "TaskForge Dashboard",
-    "SIDEBAR": {
-        ...
-    }
 }

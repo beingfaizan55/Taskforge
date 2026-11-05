@@ -64,6 +64,9 @@ class Task(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    category = models.CharField(max_length=50, blank=True, null=True)
+    estimated_hours = models.FloatField(blank=True, null=True)
+    
     class Meta:
         ordering = ['due_date', '-created_at']
 

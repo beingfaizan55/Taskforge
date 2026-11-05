@@ -18,14 +18,21 @@ from django.contrib import admin
 from django.urls import path, include
 from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
 
+# Import the GoogleLogin view
+from tasks.views import GoogleLogin
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    
+    path('api/', include('tasks.urls')),
     # OpenAPI Schema and Swagger UI
     path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
     path('api/docs/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
+
+    # Basic dj-rest-auth and allauth URLs
+    path('api/auth/', include('dj_rest_auth.urls')),
+    path('api/auth/registration/', include('dj_rest_auth.registration.urls')),
+    path('accounts/', include('allauth.urls')),
     
-    # Your app URLs
-    path('api/', include('tasks.urls')),
-    #path('api/', include('tasks.urls')),
+    # Google Login API Endpoint
+    path('api/auth/google/', GoogleLogin.as_view(), name='google_login'),
 ]
